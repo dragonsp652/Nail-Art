@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet & Glam | Luxury Nail Art Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            50: '#FFF5F7',
+                            100: '#FDE2E4',
+                            200: '#FCD5CE',
+                            300: '#F8AD9D',
+                            400: '#E8A598',
+                            500: '#D88373',
+                            800: '#6B3A36',
+                            900: '#3D1D1B'
+                        },
+                        cream: '#FFFCF8',
+                        charcoal: '#1A1818',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FFF5F7;
+            color: #1A1818;
+            overflow-x: hidden;
+        }
+
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(253, 226, 228, 0.7);
+        }
+
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(232, 165, 152, 0.25);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FFF5F7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E8A598;
+            border-radius: 99px;
+        }
+
+        .floating-sparkle {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(12deg); }
+        }
+
+        .star-btn {
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .star-btn:hover {
+            transform: scale(1.25);
+        }
+    </style>
+</head>
+<body class="custom-scrollbar selection:bg-rose-200 selection:text-rose-900">
+
+    <!-- Admin Notification Header (Shown when admin is logged in) -->
+    <div id="adminTopBar" class="hidden bg-charcoal text-white text-xs py-2 px-4 sticky top-0 z-50 transition-all flex justify-between items-center border-b border-rose-300/20">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-medium tracking-wide">Studio Management Active</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="switchView('client')" id="btnViewClient" class="text-rose-200 hover:text-white transition flex items-center gap-1">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Client View
+            </button>
+            <button onclick="switchView('admin')" id="btnViewAdmin" class="text-rose-200 hover:text-white transition flex items-center gap-1">
+                <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Admin Dashboard
+            </button>
+            <button onclick="logoutAdmin()" class="bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 px-2.5 py-1 rounded-full transition text-[11px]">
+                Lock Portal
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 glass-card border-b border-rose-100/60 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-rose-200/60 border border-rose-300 flex items-center justify-center text-rose-800 font-serif-title text-xl font-bold group-hover:scale-105 transition">
+                    V&G
+                </div>
+                <div>
+                    <span class="font-serif-title text-2xl tracking-wider block text-charcoal font-semibold leading-none">VELVET & GLAM</span>
+                    <span class="text-[10px] tracking-[0.25em] text-rose-500 font-medium uppercase block mt-1">Nail Artistry & Spa</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest text-charcoal/80 font-medium">
+                <a href="#services" class="hover:text-rose-500 transition">Services</a>
+                <a href="#lookbook" class="hover:text-rose-500 transition">Lookbook</a>
+                <a href="#about" class="hover:text-rose-500 transition">Studio Vibe</a>
+                <a href="#reviews" class="hover:text-rose-500 transition">Reviews</a>
+                <a href="#booking" class="hover:text-rose-500 transition">Appointments</a>
+            </nav>
+
+            <!-- Actions & Currency -->
+            <div class="flex items-center gap-4">
+                <!-- Currency Switcher -->
+                <div class="bg-white/80 border border-rose-200 rounded-full p-1 flex items-center text-xs font-semibold">
+                    <button onclick="setCurrency('INR')" id="currINR" class="px-2.5 py-1 rounded-full transition bg-rose-500 text-white">₹ INR</button>
+                    <button onclick="setCurrency('USD')" id="currUSD" class="px-2.5 py-1 rounded-full transition text-charcoal/70 hover:text-charcoal">$ USD</button>
+                </div>
+
+                <a href="#booking" class="hidden sm:inline-flex items-center gap-2 bg-charcoal text-white hover:bg-rose-900 text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition shadow-sm hover:shadow-md">
+                    <span>Book Studio</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CLIENT VIEW WRAPPER -->
+    <main id="clientView" class="transition-all duration-300">
+        
+        <!-- HERO SECTION -->
+        <section class="relative py-12 md:py-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Text Content -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-100/80 border border-rose-200 text-rose-800 text-xs tracking-wider uppercase font-medium">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-rose-500 floating-sparkle"></i>
+                            <span>Boutique Luxury Nails</span>
+                        </div>
+                        <h1 class="font-serif-title text-5xl sm:text-6xl xl:text-7xl font-normal leading-[1.08] text-charcoal">
+                            High-Fashion <br>
+                            <span class="italic font-light text-rose-500">Nail Artistry</span> & Care.
+                        </h1>
+                        <p class="text-charcoal/70 text-sm sm:text-base leading-relaxed font-light max-w-md">
+                            Experience bespoke gel sculpting, Japanese chrome detailing, and restorative spa treatments tailored to your distinct aesthetic.
+                        </p>
+
+                        <!-- Quick Badges -->
+                        <div class="grid grid-cols-3 gap-3 pt-2">
+                            <div class="glass-card p-3 rounded-2xl text-center">
+                                <span class="block font-serif-title text-2xl font-bold text-rose-800">4.9★</span>
+                                <span class="text-[10px] uppercase tracking-wider text-charcoal/60">500+ Clients</span>
+                            </div>
+                            <div class="glass-card p-3 rounded-2xl text-center">
+                                <span class="block font-serif-title text-2xl font-bold text-rose-800">100%</span>
+                                <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Vegan & Safe</span>
+                            </div>
+                            <div class="glass-card p-3 rounded-2xl text-center">
+                                <span class="block font-serif-title text-2xl font-bold text-rose-800">Custom</span>
+                                <span class="text-[10px] uppercase tracking-wider text-charcoal/60">3D Concepts</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-4">
+                            <a href="#booking" class="bg-rose-500 hover:bg-rose-600 text-white px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest shadow-lg shadow-rose-200 hover:shadow-xl transition flex items-center gap-2">
+                                <span>Reserve Your Slot</span>
+                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#lookbook" class="bg-white/80 hover:bg-white text-charcoal border border-rose-200 px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest transition flex items-center gap-2">
+                                <span>View Gallery</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Editorial Imagery Collage -->
+                    <div class="lg:col-span-7 relative">
+                        <div class="grid grid-cols-12 gap-4 items-center">
+                            <div class="col-span-7 space-y-4">
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/80 group">
+                                    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop" alt="Luxury Nails" class="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                                    <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition duration-300 text-xs">
+                                        <p class="font-serif-title text-lg font-semibold">Rose Chrome Gel Ext.</p>
+                                        <p class="text-rose-100">Signature Studio Look</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-5 space-y-4">
+                                <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white/80 group">
+                                    <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=600&auto=format&fit=crop" alt="Detailed Nail Art" class="w-full h-44 sm:h-52 object-cover transform group-hover:scale-105 transition duration-700">
+                                </div>
+                                <div class="glass-card p-5 rounded-3xl border border-rose-200/80 space-y-2">
+                                    <div class="flex items-center gap-2 text-rose-500">
+                                        <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+                                        <span class="text-xs font-semibold uppercase tracking-wider text-charcoal">Trending Now</span>
+                                    </div>
+                                    <p class="text-xs text-charcoal/70 leading-relaxed">3D Pearl Sculpting & Opal Cateye are this week's most booked design styles.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Accent Card -->
+                        <div class="absolute -bottom-6 right-8 bg-white/95 p-4 rounded-2xl shadow-xl border border-rose-100 flex items-center gap-3 max-w-xs hidden sm:flex">
+                            <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-charcoal">Open Today: 10:00 AM - 8:00 PM</p>
+                                <p class="text-[11px] text-charcoal/60">Limited slots left for weekend</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-16 bg-white/50 backdrop-blur-sm border-y border-rose-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Bespoke Treatments</span>
+                    <h2 class="font-serif-title text-4xl sm:text-5xl text-charcoal mt-2">Signature Studio Offerings</h2>
+                    <p class="text-charcoal/60 text-sm mt-3">High precision sculpting using toxic-free premium Japanese and Korean gel formulations.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="servicesGrid">
+                    <!-- Service Card 1 -->
+                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
+                                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Custom 3D Gel Art</h3>
+                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Handmade charms, liquid chrome textures, and custom raised 3D line work crafted by master artists.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
+                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="2499" data-usd="32">₹2,499</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Soft Gel Overlay</h3>
+                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Natural nail strengthening BIAB treatment with ultra-glossy long-lasting gel polish overlay.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
+                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="1899" data-usd="25">₹1,899</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
+                                <i data-lucide="gem" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Apress Gel-X Extensions</h3>
+                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Full-coverage soft gel extensions for flawless length, light feel, and zero nail damage.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
+                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="3200" data-usd="40">₹3,200</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Velvet Spa Pedicure</h3>
+                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Rosewater soak, botanical exfoliation, collagen massage mask, and flawless gel toe polish.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
+                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="2100" data-usd="28">₹2,100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOOKBOOK & DESIGN GALLERY -->
+        <section id="lookbook" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Curated Portfolio</span>
+                        <h2 class="font-serif-title text-4xl sm:text-5xl text-charcoal mt-1">Design Lookbook</h2>
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-2" id="lookbookFilters">
+                        <button onclick="filterGallery('All')" class="filter-btn active-filter px-4 py-2 rounded-full text-xs font-semibold transition bg-rose-500 text-white shadow-sm">All Styles</button>
+                        <button onclick="filterGallery('Chrome')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-white/80 text-charcoal/70 border border-rose-200 hover:border-rose-400">Chrome & Metallic</button>
+                        <button onclick="filterGallery('3D Art')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-white/80 text-charcoal/70 border border-rose-200 hover:border-rose-400">3D & Textured</button>
+                        <button onclick="filterGallery('French')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-white/80 text-charcoal/70 border border-rose-200 hover:border-rose-400">Minimal French</button>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                    <!-- Dynamic Items injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDIO VIBE -->
+        <section id="about" class="py-16 bg-white/60 border-y border-rose-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 relative">
+                        <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop" alt="Studio Atmosphere" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-4 glass-card p-6 rounded-3xl max-w-xs shadow-xl hidden sm:block">
+                            <i data-lucide="sparkles" class="w-8 h-8 text-rose-500 mb-2"></i>
+                            <h4 class="font-serif-title text-xl font-bold text-charcoal">Hygiene First</h4>
+                            <p class="text-xs text-charcoal/70 mt-1">Medical-grade autoclave sterilization for every client kit.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">The Studio Vibe</span>
+                        <h2 class="font-serif-title text-4xl sm:text-5xl text-charcoal">An Unhurried Sanctuary For Your Nails</h2>
+                        <p class="text-charcoal/70 text-sm leading-relaxed">
+                            At Velvet & Glam, we believe nail design is an extension of modern self-expression. Step into our minimalist pink sanctuary, enjoy complimentary herbal tea or bubbly, and let our artists turn your moodboards into wearable art.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4 p-3 rounded-2xl bg-rose-50/50 border border-rose-100">
+                                <div class="w-8 h-8 rounded-full bg-rose-200/60 text-rose-800 flex items-center justify-center shrink-0 font-bold text-xs">1</div>
+                                <div>
+                                    <h4 class="text-xs font-semibold text-charcoal">Consultation & Nail Health Assessment</h4>
+                                    <p class="text-xs text-charcoal/60 mt-0.5">We analyze your natural nail condition before recommending soft gel vs extensions.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-3 rounded-2xl bg-rose-50/50 border border-rose-100">
+                                <div class="w-8 h-8 rounded-full bg-rose-200/60 text-rose-800 flex items-center justify-center shrink-0 font-bold text-xs">2</div>
+                                <div>
+                                    <h4 class="text-xs font-semibold text-charcoal">Precision Sculpting & Custom Mixing</h4>
+                                    <p class="text-xs text-charcoal/60 mt-0.5">Custom color matching and detailed sculpting tailored to your hands.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS GRID -->
+        <section id="reviews" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Love Notes</span>
+                    <h2 class="font-serif-title text-4xl sm:text-5xl text-charcoal mt-2">What Our Clients Say</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="reviewsGrid">
+                    <!-- Reviews injected dynamically -->
+                </div>
+
+                <!-- Add Review Modal/Form Button -->
+                <div class="text-center mt-10">
+                    <button onclick="toggleReviewModal(true)" class="bg-white hover:bg-rose-50 border border-rose-200 text-charcoal px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition shadow-sm">
+                        + Share Your Experience
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPOINTMENT BOOKING SECTION -->
+        <section id="booking" class="py-16 bg-rose-100/40 border-t border-rose-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Reserve A Slot</span>
+                        <h2 class="font-serif-title text-4xl sm:text-5xl text-charcoal">Book Your Luxury Nail Experience</h2>
+                        <p class="text-charcoal/70 text-sm leading-relaxed">
+                            Appointments are recommended 2-3 days in advance to secure your preferred artist. Walk-ins subject to studio availability.
+                        </p>
+
+                        <div class="glass-card p-6 rounded-3xl space-y-4 border border-rose-200">
+                            <div class="flex items-center gap-3 text-sm">
+                                <div class="w-10 h-10 rounded-full bg-rose-200/50 flex items-center justify-center text-rose-700">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-xs text-charcoal">Studio Address</p>
+                                    <p class="text-xs text-charcoal/60">Level 2, Velvet Arcade, Alkapuri, Vadodara</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <div class="w-10 h-10 rounded-full bg-rose-200/50 flex items-center justify-center text-rose-700">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-xs text-charcoal">Studio Desk</p>
+                                    <p class="text-xs text-charcoal/60">+91 98765 43210 / Concierge</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Card -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-8 rounded-3xl border border-rose-200 shadow-xl">
+                            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Your Full Name *</label>
+                                        <input type="text" required id="bookName" placeholder="e.g. Ananya Sharma" class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Phone Number *</label>
+                                        <input type="tel" required id="bookPhone" placeholder="+91 98765 00000" class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div class="sm:col-span-1">
+                                        <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Select Treatment *</label>
+                                        <select id="bookService" required class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                            <option value="Custom 3D Gel Art">Custom 3D Gel Art</option>
+                                            <option value="Soft Gel Overlay">Soft Gel Overlay (BIAB)</option>
+                                            <option value="Apress Gel-X Extensions">Apress Gel-X Extensions</option>
+                                            <option value="Velvet Spa Pedicure">Velvet Spa Pedicure</option>
+                                        </select>
+                                    </div>
+                                    <div class="sm:col-span-1">
+                                        <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Preferred Date *</label>
+                                        <input type="date" required id="bookDate" class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                    </div>
+                                    <div class="sm:col-span-1">
+                                        <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Preferred Time *</label>
+                                        <select id="bookTime" required class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                            <option value="11:00 AM">11:00 AM</option>
+                                            <option value="01:30 PM">01:30 PM</option>
+                                            <option value="04:00 PM">04:00 PM</option>
+                                            <option value="06:30 PM">06:30 PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Design Ideas / Custom Requests</label>
+                                    <textarea id="bookNotes" rows="3" placeholder="Share nail length preferences, color palettes, or inspo tags..." class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs uppercase tracking-widest py-4 rounded-2xl transition shadow-lg shadow-rose-200 flex items-center justify-center gap-2">
+                                    <span>Confirm & Submit Request</span>
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ADMIN DASHBOARD PANEL (Hidden by default) -->
+    <section id="adminView" class="hidden min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4 border-b border-rose-200 pb-6">
+            <div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Private Portal</span>
+                <h1 class="font-serif-title text-4xl font-bold text-charcoal">Studio Management Dashboard</h1>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-xs bg-rose-100 text-rose-800 px-3 py-1.5 rounded-full font-medium">Logged in as Director</span>
+                <button onclick="switchView('client')" class="bg-charcoal text-white text-xs px-4 py-2 rounded-full hover:bg-rose-900 transition">Return to Website</button>
+            </div>
+        </div>
+
+        <!-- Dashboard Stats Overview -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+            <div class="glass-card p-5 rounded-2xl border border-rose-200">
+                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Lookbook Items</p>
+                <p class="font-serif-title text-3xl font-bold text-charcoal mt-1" id="statLookbookCount">0</p>
+            </div>
+            <div class="glass-card p-5 rounded-2xl border border-rose-200">
+                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Likes Received</p>
+                <p class="font-serif-title text-3xl font-bold text-rose-600 mt-1" id="statTotalLikes">0</p>
+            </div>
+            <div class="glass-card p-5 rounded-2xl border border-rose-200">
+                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Design Clicks</p>
+                <p class="font-serif-title text-3xl font-bold text-charcoal mt-1" id="statTotalClicks">0</p>
+            </div>
+            <div class="glass-card p-5 rounded-2xl border border-rose-200">
+                <p class="text-xs uppercase tracking-wider text-charcoal/60">Pending Appointments</p>
+                <p class="font-serif-title text-3xl font-bold text-amber-600 mt-1" id="statPendingBookings">0</p>
+            </div>
+        </div>
+
+        <!-- Admin Action Tabs -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Upload New Lookbook Design -->
+            <div class="lg:col-span-5 glass-card p-6 rounded-3xl border border-rose-200 h-fit">
+                <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+                    <i data-lucide="plus-circle" class="w-5 h-5 text-rose-500"></i> Add Lookbook Design
+                </h3>
+
+                <form id="addDesignForm" onsubmit="handleAddDesign(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Design Title</label>
+                        <input type="text" id="adminDesignTitle" required placeholder="e.g. Opal Chrome French" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Category</label>
+                        <select id="adminDesignCategory" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                            <option value="Chrome">Chrome</option>
+                            <option value="3D Art">3D Art</option>
+                            <option value="French">French</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Base Price (₹ INR)</label>
+                        <input type="number" id="adminDesignPrice" required placeholder="2500" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Upload Photo or Image URL</label>
+                        <input type="file" id="adminFileInput" accept="image/*" onchange="previewImageFile(event)" class="w-full text-xs text-charcoal/60 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:bg-rose-100 file:text-rose-800 hover:file:bg-rose-200 mb-2">
+                        <input type="url" id="adminDesignUrl" placeholder="Or paste image URL (https://...)" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div id="imagePreviewContainer" class="hidden">
+                        <img id="imagePreview" src="" alt="Preview" class="w-full h-32 object-cover rounded-xl border border-rose-200">
+                    </div>
+
+                    <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs uppercase tracking-widest py-3 rounded-xl transition">
+                        Publish to Client View
+                    </button>
+                </form>
+            </div>
+
+            <!-- Manage Appointments & Gallery Stream -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Appointments Request Log -->
+                <div class="glass-card p-6 rounded-3xl border border-rose-200">
+                    <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-5 h-5 text-rose-500"></i> Client Appointments Log
+                    </h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-rose-100/50 uppercase tracking-wider text-charcoal/70 border-b border-rose-200">
+                                <tr>
+                                    <th class="p-3">Client</th>
+                                    <th class="p-3">Treatment</th>
+                                    <th class="p-3">Date & Time</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminBookingsTable" class="divide-y divide-rose-100">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Live Analytics & Delete Lookbook Items -->
+                <div class="glass-card p-6 rounded-3xl border border-rose-200">
+                    <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+                        <i data-lucide="bar-chart-2" class="w-5 h-5 text-rose-500"></i> Gallery Analytics & Management
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="adminGalleryManageGrid">
+                        <!-- Dynamic Design Cards for Admin -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER WITH HIDDEN STAFF ACCESS GATE -->
+    <footer class="bg-charcoal text-white py-12 border-t border-rose-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <span class="font-serif-title text-2xl tracking-wider block font-semibold text-rose-200">VELVET & GLAM</span>
+                    <p class="text-xs text-white/50 mt-1">High-end bespoke studio nail artistry.</p>
+                </div>
+                <div class="flex items-center gap-6 text-xs text-white/70">
+                    <a href="#services" class="hover:text-rose-200 transition">Services</a>
+                    <a href="#lookbook" class="hover:text-rose-200 transition">Lookbook</a>
+                    <a href="#booking" class="hover:text-rose-200 transition">Appointments</a>
+                    <!-- Hidden Admin Trigger Button -->
+                    <button onclick="promptAdminLogin()" class="text-white/30 hover:text-rose-300 transition text-[10px] tracking-widest uppercase">
+                        [ Studio Staff Login ]
+                    </button>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-white/10 text-center text-[11px] text-white/40">
+                © <span id="yearSpan"></span> Velvet & Glam Nail Artistry Studio. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- POST-BOOKING FEEDBACK POP-UP MODAL -->
+    <div id="postBookingFeedbackModal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-white p-8 rounded-3xl max-w-lg w-full space-y-5 border border-rose-200 shadow-2xl relative text-center">
+            
+            <button onclick="togglePostBookingFeedback(false)" class="absolute top-4 right-4 text-charcoal/40 hover:text-charcoal p-2 rounded-full transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Success Badge -->
+            <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto border-2 border-rose-200 shadow-inner">
+                <i data-lucide="sparkles" class="w-8 h-8 floating-sparkle"></i>
+            </div>
+
+            <div>
+                <span class="text-[10px] uppercase tracking-widest font-bold text-rose-500">Request Sent Successfully!</span>
+                <h3 class="font-serif-title text-3xl font-bold text-charcoal mt-1">How Was Your Experience?</h3>
+                <p class="text-xs text-charcoal/60 mt-1 leading-relaxed max-w-sm mx-auto">
+                    We've logged your appointment request! While we process your slot, could you tell us what you think of our studio website and design offerings?
+                </p>
+            </div>
+
+            <!-- Feedback Form -->
+            <form onsubmit="handlePostBookingReviewSubmit(event)" class="space-y-4 text-left">
+                
+                <!-- Client Name (Auto-filled) -->
+                <div>
+                    <label class="block text-[11px] uppercase font-semibold text-charcoal/70 mb-1">Your Name</label>
+                    <input type="text" id="postRevName" required class="w-full px-4 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                </div>
+
+                <!-- Star Rating Selector -->
+                <div>
+                    <label class="block text-[11px] uppercase font-semibold text-charcoal/70 mb-1.5 text-center">Rate Your Experience</label>
+                    <div class="flex items-center justify-center gap-2" id="starRatingContainer">
+                        <button type="button" onclick="setSelectedStar(1)" class="star-btn text-2xl text-amber-400 focus:outline-none">★</button>
+                        <button type="button" onclick="setSelectedStar(2)" class="star-btn text-2xl text-amber-400 focus:outline-none">★</button>
+                        <button type="button" onclick="setSelectedStar(3)" class="star-btn text-2xl text-amber-400 focus:outline-none">★</button>
+                        <button type="button" onclick="setSelectedStar(4)" class="star-btn text-2xl text-amber-400 focus:outline-none">★</button>
+                        <button type="button" onclick="setSelectedStar(5)" class="star-btn text-2xl text-amber-400 focus:outline-none">★</button>
+                    </div>
+                </div>
+
+                <!-- Review Comment -->
+                <div>
+                    <label class="block text-[11px] uppercase font-semibold text-charcoal/70 mb-1">Your Thoughts / Feedback</label>
+                    <textarea id="postRevComment" required rows="3" placeholder="I loved how fast the booking was! The 3D lookbook gallery is stunning..." class="w-full px-4 py-3 rounded-2xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                    <button type="button" onclick="togglePostBookingFeedback(false)" class="w-1/3 bg-gray-100 hover:bg-gray-200 text-charcoal/70 font-semibold text-xs py-3 rounded-2xl transition">
+                        Skip
+                    </button>
+                    <button type="submit" class="w-2/3 bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs uppercase tracking-widest py-3 rounded-2xl transition shadow-md shadow-rose-200">
+                        Submit Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- GENERAL REVIEW SUBMISSION MODAL -->
+    <div id="reviewModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-white p-6 rounded-3xl max-w-md w-full space-y-4 border border-rose-200">
+            <div class="flex items-center justify-between">
+                <h3 class="font-serif-title text-2xl font-bold text-charcoal">Write a Studio Review</h3>
+                <button onclick="toggleReviewModal(false)" class="text-charcoal/50 hover:text-charcoal"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <form onsubmit="handleReviewSubmit(event)" class="space-y-3">
+                <input type="text" id="revName" required placeholder="Your Name" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs">
+                <select id="revRating" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs">
+                    <option value="5">★★★★★ (5/5 Stars)</option>
+                    <option value="4">★★★★☆ (4/5 Stars)</option>
+                </select>
+                <textarea id="revComment" required rows="3" placeholder="How was your nail transformation?" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs"></textarea>
+                <button type="submit" class="w-full bg-rose-500 text-white font-semibold text-xs uppercase tracking-widest py-3 rounded-xl">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN PASSKEY AUTH MODAL -->
+    <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-white p-6 rounded-3xl max-w-sm w-full space-y-4 border border-rose-200 shadow-2xl">
+            <div class="text-center">
+                <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="lock" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-serif-title text-2xl font-bold text-charcoal">Studio Access Gate</h3>
+                <p class="text-xs text-charcoal/60 mt-1">Authorized personnel authentication required.</p>
+            </div>
+
+            <div>
+                <input type="password" id="adminPasskeyInput" placeholder="Enter studio passkey..." class="w-full px-4 py-3 rounded-2xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                <p id="passkeyError" class="text-xs text-red-500 mt-1 hidden text-center">Incorrect Passkey</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="toggleAdminModal(false)" class="w-1/2 bg-gray-100 text-charcoal font-semibold text-xs py-3 rounded-xl">Cancel</button>
+                <button onclick="verifyAdminPasskey()" class="w-1/2 bg-rose-500 text-white font-semibold text-xs py-3 rounded-xl hover:bg-rose-600">Authenticate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-charcoal text-white px-5 py-3 rounded-2xl shadow-xl z-50 text-xs hidden items-center gap-3 transition">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toastMsg">Action completed</span>
+    </div>
+
+    <!-- APPLICATION STATE & LOGIC -->
+    <script>
+        // PASSKEY FOR ADMIN ACCESS
+        const ADMIN_PASSKEY = "Nishtha_Aadisinh_Rana._";
+
+        // Initial Data Sets
+        const defaultLookbook = [
+            { id: '1', title: 'Aura Opal Gel Chrome', category: 'Chrome', priceINR: 2800, likes: 142, clicks: 310, img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600&auto=format&fit=crop' },
+            { id: '2', title: 'Japanese 3D Pearl Bloom', category: '3D Art', priceINR: 3400, likes: 189, clicks: 420, img: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=600&auto=format&fit=crop' },
+            { id: '3', title: 'Micro Rose Gold French', category: 'French', priceINR: 2200, likes: 98, clicks: 215, img: 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=600&auto=format&fit=crop' },
+            { id: '4', title: 'Baroque Velvet Gemstone', category: '3D Art', priceINR: 3800, likes: 210, clicks: 512, img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600&auto=format&fit=crop' }
+        ];
+
+        const defaultReviews = [
+            { name: "Meera Kapoor", rating: 5, comment: "The 3D gel art here is unequaled in Gujarat. Lasted 4 full weeks without a single chip!" },
+            { name: "Riya Verma", rating: 5, comment: "Super hygienic studio, peaceful aesthetic, and complimentary rose tea. My go-to spot!" },
+            { name: "Tanvi Patel", rating: 5, comment: "Apress Gel-X extensions feel so lightweight and natural. Obsessed with the chrome palette." }
+        ];
+
+        // State Management
+        let appState = {
+            currency: 'INR', // 'INR' or 'USD'
+            conversionRate: 0.012, // 1 INR = ~0.012 USD
+            isAdmin: false,
+            activeFilter: 'All',
+            selectedFeedbackStar: 5,
+            lookbook: JSON.parse(localStorage.getItem('vg_lookbook')) || defaultLookbook,
+            reviews: JSON.parse(localStorage.getItem('vg_reviews')) || defaultReviews,
+            bookings: JSON.parse(localStorage.getItem('vg_bookings')) || [
+                { id: '101', name: 'Siddhika Rao', phone: '+91 98980 12345', service: 'Custom 3D Gel Art', date: '2026-10-28', time: '01:30 PM', status: 'Confirmed' }
+            ]
+        };
+
+        // Initialize App
+        window.onload = function() {
+            document.getElementById('yearSpan').textContent = new Date().getFullYear();
+            lucide.createIcons();
+            renderGallery();
+            renderReviews();
+            renderAdminDashboard();
+            updatePricesDisplay();
+
+            // Keyboard shortcut for staff login (Ctrl + Shift + A)
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                    e.preventDefault();
+                    promptAdminLogin();
+                }
+            });
+        };
+
+        // Save State
+        function saveState() {
+            localStorage.setItem('vg_lookbook', JSON.stringify(appState.lookbook));
+            localStorage.setItem('vg_reviews', JSON.stringify(appState.reviews));
+            localStorage.setItem('vg_bookings', JSON.stringify(appState.bookings));
+            renderAdminDashboard();
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        // Currency Toggle
+        function setCurrency(curr) {
+            appState.currency = curr;
+            document.getElementById('currINR').className = curr === 'INR' ? "px-2.5 py-1 rounded-full transition bg-rose-500 text-white" : "px-2.5 py-1 rounded-full transition text-charcoal/70 hover:text-charcoal";
+            document.getElementById('currUSD').className = curr === 'USD' ? "px-2.5 py-1 rounded-full transition bg-rose-500 text-white" : "px-2.5 py-1 rounded-full transition text-charcoal/70 hover:text-charcoal";
+            
+            updatePricesDisplay();
+            renderGallery();
+        }
+
+        function formatPrice(priceINR) {
+            if (appState.currency === 'USD') {
+                return `$${Math.round(priceINR * appState.conversionRate)}`;
+            }
+            return `₹${priceINR.toLocaleString('en-IN')}`;
+        }
+
+        function updatePricesDisplay() {
+            document.querySelectorAll('.price-display').forEach(el => {
+                const inr = parseInt(el.getAttribute('data-inr'));
+                const usd = parseInt(el.getAttribute('data-usd'));
+                el.textContent = appState.currency === 'USD' ? `$${usd}` : `₹${inr.toLocaleString('en-IN')}`;
+            });
+        }
+
+        // Render Lookbook Gallery
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const items = appState.activeFilter === 'All' 
+                ? appState.lookbook 
+                : appState.lookbook.filter(item => item.category === appState.activeFilter);
+
+            grid.innerHTML = items.map(item => `
+                <div class="glass-card glass-card-hover rounded-3xl overflow-hidden border border-rose-100 flex flex-col justify-between group">
+                    <div class="relative overflow-hidden cursor-pointer" onclick="trackClick('${item.id}')">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full border border-rose-100">
+                            ${item.category}
+                        </span>
+                    </div>
+                    <div class="p-5 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-serif-title text-xl font-semibold text-charcoal">${item.title}</h3>
+                            <p class="text-xs text-rose-800 font-bold mt-0.5">${formatPrice(item.priceINR)}</p>
+                        </div>
+                        <button onclick="likeDesign('${item.id}')" class="w-10 h-10 rounded-full bg-rose-100/60 hover:bg-rose-200 text-rose-600 flex items-center justify-center transition gap-1 text-xs font-semibold">
+                            <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+                            <span>${item.likes}</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function filterGallery(cat) {
+            appState.activeFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-white/80 text-charcoal/70 border border-rose-200 hover:border-rose-400";
+            });
+            event.target.className = "filter-btn active-filter px-4 py-2 rounded-full text-xs font-semibold transition bg-rose-500 text-white shadow-sm";
+            renderGallery();
+        }
+
+        function likeDesign(id) {
+            const item = appState.lookbook.find(i => i.id === id);
+            if(item) {
+                item.likes += 1;
+                saveState();
+                renderGallery();
+                showToast(`Liked ${item.title}`);
+            }
+        }
+
+        function trackClick(id) {
+            const item = appState.lookbook.find(i => i.id === id);
+            if(item) {
+                item.clicks += 1;
+                saveState();
+            }
+        }
+
+        // Render Reviews
+        function renderReviews() {
+            const grid = document.getElementById('reviewsGrid');
+            grid.innerHTML = appState.reviews.map(rev => `
+                <div class="glass-card p-6 rounded-3xl border border-rose-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-3 text-xs">
+                            ${'★'.repeat(rev.rating)}
+                        </div>
+                        <p class="text-xs text-charcoal/70 italic leading-relaxed">"${rev.comment}"</p>
+                    </div>
+                    <p class="font-serif-title text-base font-semibold text-charcoal mt-4 pt-3 border-t border-rose-100/50">— ${rev.name}</p>
+                </div>
+            `).join('');
+        }
+
+        function toggleReviewModal(show) {
+            document.getElementById('reviewModal').classList.toggle('hidden', !show);
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('revName').value;
+            const rating = parseInt(document.getElementById('revRating').value);
+            const comment = document.getElementById('revComment').value;
+
+            appState.reviews.unshift({ name, rating, comment });
+            saveState();
+            renderReviews();
+            toggleReviewModal(false);
+            showToast("Thank you for your review!");
+        }
+
+        // APPOINTMENT BOOKING & AUTOMATIC POST-BOOKING FEEDBACK MODAL LOGIC
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('bookName').value;
+            const phone = document.getElementById('bookPhone').value;
+            const service = document.getElementById('bookService').value;
+            const date = document.getElementById('bookDate').value;
+            const time = document.getElementById('bookTime').value;
+            const notes = document.getElementById('bookNotes').value;
+
+            const newBooking = {
+                id: Date.now().toString(),
+                name,
+                phone,
+                service,
+                date,
+                time,
+                notes,
+                status: 'Pending'
+            };
+
+            // Save booking to state/localStorage
+            appState.bookings.unshift(newBooking);
+            saveState();
+
+            // Clear booking form
+            document.getElementById('bookingForm').reset();
+
+            // Auto-fill client name into post-booking feedback modal & trigger it
+            document.getElementById('postRevName').value = name;
+            setSelectedStar(5);
+            togglePostBookingFeedback(true);
+        }
+
+        function togglePostBookingFeedback(show) {
+            document.getElementById('postBookingFeedbackModal').classList.toggle('hidden', !show);
+        }
+
+        function setSelectedStar(starCount) {
+            appState.selectedFeedbackStar = starCount;
+            const stars = document.getElementById('starRatingContainer').children;
+            for (let i = 0; i < stars.length; i++) {
+                if (i < starCount) {
+                    stars[i].classList.remove('text-gray-300');
+                    stars[i].classList.add('text-amber-400');
+                } else {
+                    stars[i].classList.remove('text-amber-400');
+                    stars[i].classList.add('text-gray-300');
+                }
+            }
+        }
+
+        function handlePostBookingReviewSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('postRevName').value;
+            const rating = appState.selectedFeedbackStar;
+            const comment = document.getElementById('postRevComment').value;
+
+            if (comment.trim()) {
+                appState.reviews.unshift({ name, rating, comment });
+                saveState();
+                renderReviews();
+            }
+
+            togglePostBookingFeedback(false);
+            document.getElementById('postRevComment').value = '';
+            showToast("Thank you! Appointment logged & feedback recorded.");
+        }
+
+        // ADMIN PASSKEY MODAL LOGIC
+        function promptAdminLogin() {
+            if (appState.isAdmin) {
+                switchView('admin');
+            } else {
+                toggleAdminModal(true);
+            }
+        }
+
+        function toggleAdminModal(show) {
+            document.getElementById('adminModal').classList.toggle('hidden', !show);
+            document.getElementById('passkeyError').classList.add('hidden');
+            document.getElementById('adminPasskeyInput').value = '';
+        }
+
+        function verifyAdminPasskey() {
+            const input = document.getElementById('adminPasskeyInput').value;
+            if (input === ADMIN_PASSKEY) {
+                appState.isAdmin = true;
+                toggleAdminModal(false);
+                document.getElementById('adminTopBar').classList.remove('hidden');
+                switchView('admin');
+                showToast("Admin portal unlocked.");
+            } else {
+                document.getElementById('passkeyError').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            appState.isAdmin = false;
+            document.getElementById('adminTopBar').classList.add('hidden');
+            switchView('client');
+            showToast("Admin session locked.");
+        }
+
+        function switchView(view) {
+            if (view === 'admin' && !appState.isAdmin) {
+                promptAdminLogin();
+                return;
+            }
+            
+            document.getElementById('clientView').classList.toggle('hidden', view === 'admin');
+            document.getElementById('adminView').classList.toggle('hidden', view === 'client');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ADMIN DASHBOARD FUNCTIONS
+        function renderAdminDashboard() {
+            // Stats
+            document.getElementById('statLookbookCount').textContent = appState.lookbook.length;
+            document.getElementById('statTotalLikes').textContent = appState.lookbook.reduce((acc, i) => acc + i.likes, 0);
+            document.getElementById('statTotalClicks').textContent = appState.lookbook.reduce((acc, i) => acc + i.clicks, 0);
+            document.getElementById('statPendingBookings').textContent = appState.bookings.filter(b => b.status === 'Pending').length;
+
+            // Bookings Table
+            const bookingsTbody = document.getElementById('adminBookingsTable');
+            bookingsTbody.innerHTML = appState.bookings.map(b => `
+                <tr>
+                    <td class="p-3 font-medium text-charcoal">${b.name}<br><span class="text-[10px] text-charcoal/50">${b.phone}</span></td>
+                    <td class="p-3 text-charcoal/70">${b.service}</td>
+                    <td class="p-3 text-charcoal/70">${b.date}<br><span class="text-[10px] text-rose-600 font-semibold">${b.time || '11:00 AM'}</span></td>
+                    <td class="p-3">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${b.status === 'Confirmed' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                            ${b.status}
+                        </span>
+                    </td>
+                    <td class="p-3">
+                        <button onclick="toggleBookingStatus('${b.id}')" class="text-xs text-rose-600 hover:underline">
+                            ${b.status === 'Pending' ? 'Confirm' : 'Mark Pending'}
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Admin Lookbook Delete Grid
+            const adminGrid = document.getElementById('adminGalleryManageGrid');
+            adminGrid.innerHTML = appState.lookbook.map(item => `
+                <div class="bg-white/80 p-3 rounded-2xl border border-rose-100 flex items-center justify-between gap-3">
+                    <img src="${item.img}" class="w-12 h-12 rounded-xl object-cover shrink-0">
+                    <div class="truncate flex-1">
+                        <p class="text-xs font-semibold text-charcoal truncate">${item.title}</p>
+                        <p class="text-[10px] text-charcoal/50">Clicks: ${item.clicks} | Likes: ${item.likes}</p>
+                    </div>
+                    <button onclick="deleteDesign('${item.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        let uploadedBase64 = '';
+        function previewImageFile(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    uploadedBase64 = evt.target.result;
+                    document.getElementById('imagePreview').src = uploadedBase64;
+                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleAddDesign(e) {
+            e.preventDefault();
+            const title = document.getElementById('adminDesignTitle').value;
+            const category = document.getElementById('adminDesignCategory').value;
+            const priceINR = parseInt(document.getElementById('adminDesignPrice').value);
+            const urlInput = document.getElementById('adminDesignUrl').value;
+
+            const finalImg = uploadedBase64 || urlInput || 'https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600&auto=format&fit=crop';
+
+            const newDesign = {
+                id: Date.now().toString(),
+                title,
+                category,
+                priceINR,
+                likes: 0,
+                clicks: 0,
+                img: finalImg
+            };
+
+            appState.lookbook.unshift(newDesign);
+            saveState();
+            renderGallery();
+            
+            document.getElementById('addDesignForm').reset();
+            document.getElementById('imagePreviewContainer').classList.add('hidden');
+            uploadedBase64 = '';
+            showToast("New design published to lookbook!");
+        }
+
+        function deleteDesign(id) {
+            appState.lookbook = appState.lookbook.filter(i => i.id !== id);
+            saveState();
+            renderGallery();
+            showToast("Design removed.");
+        }
+
+        function toggleBookingStatus(id) {
+            const booking = appState.bookings.find(b => b.id === id);
+            if(booking) {
+                booking.status = booking.status === 'Pending' ? 'Confirmed' : 'Pending';
+                saveState();
+                showToast(`Appointment marked as ${booking.status}`);
+            }
+        }
+    </script>
+</body>
+</html>
