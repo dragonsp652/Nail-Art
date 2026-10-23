@@ -100,27 +100,27 @@
 </head>
 <body class="custom-scrollbar selection:bg-rose-200 selection:text-rose-900">
 
-    <!-- Admin Notification Header (Shown when admin is logged in) -->
+    <!-- Admin Control Banner (VISIBLE ONLY AFTER STAFF AUTHENTICATION) -->
     <div id="adminTopBar" class="hidden bg-charcoal text-white text-xs py-2 px-4 sticky top-0 z-50 transition-all flex justify-between items-center border-b border-rose-300/20">
         <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="font-medium tracking-wide">Studio Management Active</span>
+            <span class="font-medium tracking-wide">Studio Admin Session Active</span>
         </div>
         <div class="flex items-center gap-4">
-            <button onclick="switchView('client')" id="btnViewClient" class="text-rose-200 hover:text-white transition flex items-center gap-1">
+            <button onclick="switchView('client')" id="btnNavClient" class="text-rose-200 hover:text-white transition flex items-center gap-1 font-medium">
                 <i data-lucide="eye" class="w-3.5 h-3.5"></i> Client View
             </button>
-            <button onclick="switchView('admin')" id="btnViewAdmin" class="text-rose-200 hover:text-white transition flex items-center gap-1">
+            <button onclick="switchView('admin')" id="btnNavAdmin" class="text-rose-200 hover:text-white transition flex items-center gap-1 font-medium">
                 <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Admin Dashboard
             </button>
-            <button onclick="logoutAdmin()" class="bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 px-2.5 py-1 rounded-full transition text-[11px]">
-                Lock Portal
+            <button onclick="logoutAdmin()" class="bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 px-3 py-1 rounded-full transition text-[11px] font-semibold">
+                Lock Session
             </button>
         </div>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 glass-card border-b border-rose-100/60 transition-all">
+    <!-- CLIENT VIEW NAVBAR -->
+    <header id="clientHeader" class="sticky top-0 z-40 glass-card border-b border-rose-100/60 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-full bg-rose-200/60 border border-rose-300 flex items-center justify-center text-rose-800 font-serif-title text-xl font-bold group-hover:scale-105 transition">
@@ -259,65 +259,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="servicesGrid">
-                    <!-- Service Card 1 -->
-                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
-                                <i data-lucide="sparkles" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Custom 3D Gel Art</h3>
-                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Handmade charms, liquid chrome textures, and custom raised 3D line work crafted by master artists.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
-                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
-                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="2499" data-usd="32">₹2,499</span>
-                        </div>
-                    </div>
-
-                    <!-- Service Card 2 -->
-                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
-                                <i data-lucide="shield-check" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Soft Gel Overlay</h3>
-                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Natural nail strengthening BIAB treatment with ultra-glossy long-lasting gel polish overlay.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
-                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
-                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="1899" data-usd="25">₹1,899</span>
-                        </div>
-                    </div>
-
-                    <!-- Service Card 3 -->
-                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
-                                <i data-lucide="gem" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Apress Gel-X Extensions</h3>
-                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Full-coverage soft gel extensions for flawless length, light feel, and zero nail damage.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
-                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
-                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="3200" data-usd="40">₹3,200</span>
-                        </div>
-                    </div>
-
-                    <!-- Service Card 4 -->
-                    <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
-                        <div>
-                            <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
-                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-serif-title text-2xl text-charcoal font-semibold">Velvet Spa Pedicure</h3>
-                            <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">Rosewater soak, botanical exfoliation, collagen massage mask, and flawless gel toe polish.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
-                            <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
-                            <span class="font-serif-title text-2xl font-bold text-rose-800 price-display" data-inr="2100" data-usd="28">₹2,100</span>
-                        </div>
-                    </div>
+                    <!-- Dynamic Services injected via JS -->
                 </div>
             </div>
         </section>
@@ -405,7 +347,7 @@
                     <!-- Reviews injected dynamically -->
                 </div>
 
-                <!-- Add Review Modal/Form Button -->
+                <!-- Add Review Modal Button -->
                 <div class="text-center mt-10">
                     <button onclick="toggleReviewModal(true)" class="bg-white hover:bg-rose-50 border border-rose-200 text-charcoal px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-widest transition shadow-sm">
                         + Share Your Experience
@@ -467,10 +409,7 @@
                                     <div class="sm:col-span-1">
                                         <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal/70 mb-1">Select Treatment *</label>
                                         <select id="bookService" required class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
-                                            <option value="Custom 3D Gel Art">Custom 3D Gel Art</option>
-                                            <option value="Soft Gel Overlay">Soft Gel Overlay (BIAB)</option>
-                                            <option value="Apress Gel-X Extensions">Apress Gel-X Extensions</option>
-                                            <option value="Velvet Spa Pedicure">Velvet Spa Pedicure</option>
+                                            <!-- Dynamically populated from services state -->
                                         </select>
                                     </div>
                                     <div class="sm:col-span-1">
@@ -506,27 +445,29 @@
         </section>
     </main>
 
-    <!-- ADMIN DASHBOARD PANEL (Hidden by default) -->
+    <!-- ADMIN DASHBOARD PANEL (HIDDEN BY DEFAULT) -->
     <section id="adminView" class="hidden min-h-screen py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4 border-b border-rose-200 pb-6">
             <div>
-                <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Private Portal</span>
-                <h1 class="font-serif-title text-4xl font-bold text-charcoal">Studio Management Dashboard</h1>
+                <span class="text-xs font-semibold uppercase tracking-widest text-rose-500">Private Studio Management</span>
+                <h1 class="font-serif-title text-4xl font-bold text-charcoal">Admin Portal Dashboard</h1>
             </div>
             <div class="flex items-center gap-3">
-                <span class="text-xs bg-rose-100 text-rose-800 px-3 py-1.5 rounded-full font-medium">Logged in as Director</span>
-                <button onclick="switchView('client')" class="bg-charcoal text-white text-xs px-4 py-2 rounded-full hover:bg-rose-900 transition">Return to Website</button>
+                <span class="text-xs bg-rose-100 text-rose-800 px-3 py-1.5 rounded-full font-medium">Logged in as Studio Director</span>
+                <button onclick="switchView('client')" class="bg-charcoal text-white text-xs px-4 py-2 rounded-full hover:bg-rose-900 transition flex items-center gap-1.5">
+                    <i data-lucide="eye" class="w-3.5 h-3.5"></i> Return to Client View
+                </button>
             </div>
         </div>
 
         <!-- Dashboard Stats Overview -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             <div class="glass-card p-5 rounded-2xl border border-rose-200">
-                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Lookbook Items</p>
+                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Designs</p>
                 <p class="font-serif-title text-3xl font-bold text-charcoal mt-1" id="statLookbookCount">0</p>
             </div>
             <div class="glass-card p-5 rounded-2xl border border-rose-200">
-                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Likes Received</p>
+                <p class="text-xs uppercase tracking-wider text-charcoal/60">Total Design Likes</p>
                 <p class="font-serif-title text-3xl font-bold text-rose-600 mt-1" id="statTotalLikes">0</p>
             </div>
             <div class="glass-card p-5 rounded-2xl border border-rose-200">
@@ -539,53 +480,86 @@
             </div>
         </div>
 
-        <!-- Admin Action Tabs -->
+        <!-- Admin Action Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            <!-- Upload New Lookbook Design -->
-            <div class="lg:col-span-5 glass-card p-6 rounded-3xl border border-rose-200 h-fit">
-                <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
-                    <i data-lucide="plus-circle" class="w-5 h-5 text-rose-500"></i> Add Lookbook Design
-                </h3>
+            <!-- Add New Design & Add New Service Forms -->
+            <div class="lg:col-span-5 space-y-8">
+                <!-- Add Design -->
+                <div class="glass-card p-6 rounded-3xl border border-rose-200">
+                    <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+                        <i data-lucide="plus-circle" class="w-5 h-5 text-rose-500"></i> Upload New Lookbook Design
+                    </h3>
 
-                <form id="addDesignForm" onsubmit="handleAddDesign(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Design Title</label>
-                        <input type="text" id="adminDesignTitle" required placeholder="e.g. Opal Chrome French" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Category</label>
-                        <select id="adminDesignCategory" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
-                            <option value="Chrome">Chrome</option>
-                            <option value="3D Art">3D Art</option>
-                            <option value="French">French</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Base Price (₹ INR)</label>
-                        <input type="number" id="adminDesignPrice" required placeholder="2500" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Upload Photo or Image URL</label>
-                        <input type="file" id="adminFileInput" accept="image/*" onchange="previewImageFile(event)" class="w-full text-xs text-charcoal/60 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:bg-rose-100 file:text-rose-800 hover:file:bg-rose-200 mb-2">
-                        <input type="url" id="adminDesignUrl" placeholder="Or paste image URL (https://...)" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
-                    </div>
+                    <form id="addDesignForm" onsubmit="handleAddDesign(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Design Title</label>
+                            <input type="text" id="adminDesignTitle" required placeholder="e.g. Opal Chrome French" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Category</label>
+                            <select id="adminDesignCategory" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                                <option value="Chrome">Chrome</option>
+                                <option value="3D Art">3D Art</option>
+                                <option value="French">French</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Price (₹ INR)</label>
+                            <input type="number" id="adminDesignPrice" required placeholder="2500" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Upload Photo or Image URL</label>
+                            <input type="file" id="adminFileInput" accept="image/*" onchange="previewImageFile(event)" class="w-full text-xs text-charcoal/60 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:bg-rose-100 file:text-rose-800 hover:file:bg-rose-200 mb-2">
+                            <input type="url" id="adminDesignUrl" placeholder="Or paste image URL (https://...)" class="w-full px-3 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        </div>
 
-                    <!-- Image Preview -->
-                    <div id="imagePreviewContainer" class="hidden">
-                        <img id="imagePreview" src="" alt="Preview" class="w-full h-32 object-cover rounded-xl border border-rose-200">
-                    </div>
+                        <!-- Image Preview -->
+                        <div id="imagePreviewContainer" class="hidden">
+                            <img id="imagePreview" src="" alt="Preview" class="w-full h-36 object-cover rounded-xl border border-rose-200">
+                        </div>
 
-                    <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs uppercase tracking-widest py-3 rounded-xl transition">
-                        Publish to Client View
-                    </button>
-                </form>
+                        <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs uppercase tracking-widest py-3 rounded-xl transition shadow-md shadow-rose-200">
+                            Publish to Client View
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Add Service -->
+                <div class="glass-card p-6 rounded-3xl border border-rose-200">
+                    <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-rose-500"></i> Add Studio Treatment
+                    </h3>
+                    <form id="addServiceForm" onsubmit="handleAddService(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Treatment Title</label>
+                            <input type="text" id="adminServiceTitle" required placeholder="e.g. Chrome BIAB Refill" class="w-full px-3 py-2 rounded-xl border border-rose-200 text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Description</label>
+                            <textarea id="adminServiceDesc" required rows="2" placeholder="Short description..." class="w-full px-3 py-2 rounded-xl border border-rose-200 text-xs"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Price (₹ INR)</label>
+                                <input type="number" id="adminServiceINR" required placeholder="2100" class="w-full px-3 py-2 rounded-xl border border-rose-200 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-semibold text-charcoal/70 mb-1">Price ($ USD)</label>
+                                <input type="number" id="adminServiceUSD" required placeholder="28" class="w-full px-3 py-2 rounded-xl border border-rose-200 text-xs">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-charcoal hover:bg-rose-900 text-white font-semibold text-xs uppercase tracking-widest py-2.5 rounded-xl transition">
+                            Add Treatment
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <!-- Manage Appointments & Gallery Stream -->
+            <!-- Manage Appointments & Live Design Stream -->
             <div class="lg:col-span-7 space-y-8">
                 
-                <!-- Appointments Request Log -->
+                <!-- Appointments Log -->
                 <div class="glass-card p-6 rounded-3xl border border-rose-200">
                     <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
                         <i data-lucide="calendar" class="w-5 h-5 text-rose-500"></i> Client Appointments Log
@@ -609,13 +583,23 @@
                     </div>
                 </div>
 
-                <!-- Live Analytics & Delete Lookbook Items -->
+                <!-- Manage Designs Grid -->
                 <div class="glass-card p-6 rounded-3xl border border-rose-200">
                     <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
-                        <i data-lucide="bar-chart-2" class="w-5 h-5 text-rose-500"></i> Gallery Analytics & Management
+                        <i data-lucide="bar-chart-2" class="w-5 h-5 text-rose-500"></i> Live Design Stream & Deletion
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="adminGalleryManageGrid">
-                        <!-- Dynamic Design Cards for Admin -->
+                        <!-- Dynamic Admin Design Cards -->
+                    </div>
+                </div>
+
+                <!-- Manage Services List -->
+                <div class="glass-card p-6 rounded-3xl border border-rose-200">
+                    <h3 class="font-serif-title text-2xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+                        <i data-lucide="layers" class="w-5 h-5 text-rose-500"></i> Manage Treatments
+                    </h3>
+                    <div class="space-y-3" id="adminServicesManageList">
+                        <!-- Dynamic Services -->
                     </div>
                 </div>
 
@@ -672,7 +656,6 @@
             <!-- Feedback Form -->
             <form onsubmit="handlePostBookingReviewSubmit(event)" class="space-y-4 text-left">
                 
-                <!-- Client Name (Auto-filled) -->
                 <div>
                     <label class="block text-[11px] uppercase font-semibold text-charcoal/70 mb-1">Your Name</label>
                     <input type="text" id="postRevName" required class="w-full px-4 py-2.5 rounded-xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
@@ -734,13 +717,13 @@
                 <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-3">
                     <i data-lucide="lock" class="w-6 h-6"></i>
                 </div>
-                <h3 class="font-serif-title text-2xl font-bold text-charcoal">Studio Access Gate</h3>
+                <h3 class="font-serif-title text-2xl font-bold text-charcoal">Studio Staff Gate</h3>
                 <p class="text-xs text-charcoal/60 mt-1">Authorized personnel authentication required.</p>
             </div>
 
             <div>
-                <input type="password" id="adminPasskeyInput" placeholder="Enter studio passkey..." class="w-full px-4 py-3 rounded-2xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
-                <p id="passkeyError" class="text-xs text-red-500 mt-1 hidden text-center">Incorrect Passkey</p>
+                <input type="password" id="adminPasskeyInput" placeholder="Enter studio password..." class="w-full px-4 py-3 rounded-2xl border border-rose-200 text-xs focus:outline-none focus:ring-2 focus:ring-rose-400">
+                <p id="passkeyError" class="text-xs text-red-500 mt-1 hidden text-center">Incorrect Password</p>
             </div>
 
             <div class="flex items-center gap-2">
@@ -756,17 +739,30 @@
         <span id="toastMsg">Action completed</span>
     </div>
 
-    <!-- APPLICATION STATE & LOGIC -->
+    <!-- STATE MANAGEMENT & SYNCHRONIZATION JS -->
     <script>
-        // PASSKEY FOR ADMIN ACCESS
+        // STRICT ADMIN PASSKEY
         const ADMIN_PASSKEY = "Nishtha_Aadisinh_Rana._";
 
-        // Initial Data Sets
-        const defaultLookbook = [
+        // STORAGE KEYS (v3 to avoid cached stale formats)
+        const STORAGE_DESIGNS_KEY = 'velvet_studio_designs_v3';
+        const STORAGE_SERVICES_KEY = 'velvet_studio_services_v3';
+        const STORAGE_REVIEWS_KEY = 'velvet_studio_reviews_v3';
+        const STORAGE_BOOKINGS_KEY = 'velvet_studio_bookings_v3';
+
+        // DEFAULT FALLBACK DATA
+        const defaultDesigns = [
             { id: '1', title: 'Aura Opal Gel Chrome', category: 'Chrome', priceINR: 2800, likes: 142, clicks: 310, img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600&auto=format&fit=crop' },
             { id: '2', title: 'Japanese 3D Pearl Bloom', category: '3D Art', priceINR: 3400, likes: 189, clicks: 420, img: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=600&auto=format&fit=crop' },
             { id: '3', title: 'Micro Rose Gold French', category: 'French', priceINR: 2200, likes: 98, clicks: 215, img: 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=600&auto=format&fit=crop' },
             { id: '4', title: 'Baroque Velvet Gemstone', category: '3D Art', priceINR: 3800, likes: 210, clicks: 512, img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600&auto=format&fit=crop' }
+        ];
+
+        const defaultServices = [
+            { id: 's1', title: 'Custom 3D Gel Art', desc: 'Handmade charms, liquid chrome textures, and custom raised 3D line work crafted by master artists.', priceINR: 2499, priceUSD: 32, icon: 'sparkles' },
+            { id: 's2', title: 'Soft Gel Overlay (BIAB)', desc: 'Natural nail strengthening BIAB treatment with ultra-glossy long-lasting gel polish overlay.', priceINR: 1899, priceUSD: 25, icon: 'shield-check' },
+            { id: 's3', title: 'Apress Gel-X Extensions', desc: 'Full-coverage soft gel extensions for flawless length, light feel, and zero nail damage.', priceINR: 3200, priceUSD: 40, icon: 'gem' },
+            { id: 's4', title: 'Velvet Spa Pedicure', desc: 'Rosewater soak, botanical exfoliation, collagen massage mask, and flawless gel toe polish.', priceINR: 2100, priceUSD: 28, icon: 'heart-handshake' }
         ];
 
         const defaultReviews = [
@@ -775,28 +771,68 @@
             { name: "Tanvi Patel", rating: 5, comment: "Apress Gel-X extensions feel so lightweight and natural. Obsessed with the chrome palette." }
         ];
 
-        // State Management
+        // Central Application State
         let appState = {
-            currency: 'INR', // 'INR' or 'USD'
-            conversionRate: 0.012, // 1 INR = ~0.012 USD
+            currency: 'INR',
+            conversionRate: 0.012,
             isAdmin: false,
             activeFilter: 'All',
             selectedFeedbackStar: 5,
-            lookbook: JSON.parse(localStorage.getItem('vg_lookbook')) || defaultLookbook,
-            reviews: JSON.parse(localStorage.getItem('vg_reviews')) || defaultReviews,
-            bookings: JSON.parse(localStorage.getItem('vg_bookings')) || [
-                { id: '101', name: 'Siddhika Rao', phone: '+91 98980 12345', service: 'Custom 3D Gel Art', date: '2026-10-28', time: '01:30 PM', status: 'Confirmed' }
-            ]
+            lookbook: [],
+            services: [],
+            reviews: [],
+            bookings: []
         };
 
-        // Initialize App
-        window.onload = function() {
-            document.getElementById('yearSpan').textContent = new Date().getFullYear();
-            lucide.createIcons();
+        // Initialize State from Storage
+        function loadStateFromStorage() {
+            try {
+                const designsRaw = localStorage.getItem(STORAGE_DESIGNS_KEY);
+                appState.lookbook = designsRaw ? JSON.parse(designsRaw) : defaultDesigns;
+
+                const servicesRaw = localStorage.getItem(STORAGE_SERVICES_KEY);
+                appState.services = servicesRaw ? JSON.parse(servicesRaw) : defaultServices;
+
+                const reviewsRaw = localStorage.getItem(STORAGE_REVIEWS_KEY);
+                appState.reviews = reviewsRaw ? JSON.parse(reviewsRaw) : defaultReviews;
+
+                const bookingsRaw = localStorage.getItem(STORAGE_BOOKINGS_KEY);
+                appState.bookings = bookingsRaw ? JSON.parse(bookingsRaw) : [
+                    { id: '101', name: 'Siddhika Rao', phone: '+91 98980 12345', service: 'Custom 3D Gel Art', date: '2026-10-28', time: '01:30 PM', status: 'Confirmed' }
+                ];
+            } catch (err) {
+                console.error("Storage parse error, resetting defaults:", err);
+                appState.lookbook = defaultDesigns;
+                appState.services = defaultServices;
+                appState.reviews = defaultReviews;
+            }
+        }
+
+        // Save State & Dispatch Sync Event
+        function saveStateAndSync() {
+            localStorage.setItem(STORAGE_DESIGNS_KEY, JSON.stringify(appState.lookbook));
+            localStorage.setItem(STORAGE_SERVICES_KEY, JSON.stringify(appState.services));
+            localStorage.setItem(STORAGE_REVIEWS_KEY, JSON.stringify(appState.reviews));
+            localStorage.setItem(STORAGE_BOOKINGS_KEY, JSON.stringify(appState.bookings));
+
+            // Broadcast real-time update event within same tab/window
+            window.dispatchEvent(new CustomEvent('studio-data-updated'));
+        }
+
+        // Re-render all views
+        function renderAll() {
+            renderServices();
             renderGallery();
             renderReviews();
             renderAdminDashboard();
-            updatePricesDisplay();
+            updateServiceSelectOptions();
+        }
+
+        // Window Onload
+        window.onload = function() {
+            document.getElementById('yearSpan').textContent = new Date().getFullYear();
+            loadStateFromStorage();
+            renderAll();
 
             // Keyboard shortcut for staff login (Ctrl + Shift + A)
             document.addEventListener('keydown', (e) => {
@@ -807,13 +843,17 @@
             });
         };
 
-        // Save State
-        function saveState() {
-            localStorage.setItem('vg_lookbook', JSON.stringify(appState.lookbook));
-            localStorage.setItem('vg_reviews', JSON.stringify(appState.reviews));
-            localStorage.setItem('vg_bookings', JSON.stringify(appState.bookings));
-            renderAdminDashboard();
-        }
+        // EVENT LISTENERS FOR REAL-TIME CROSS-TAB & CROSS-COMPONENT SYNC
+        window.addEventListener('studio-data-updated', () => {
+            renderAll();
+        });
+
+        window.addEventListener('storage', (e) => {
+            if ([STORAGE_DESIGNS_KEY, STORAGE_SERVICES_KEY, STORAGE_REVIEWS_KEY, STORAGE_BOOKINGS_KEY].includes(e.key)) {
+                loadStateFromStorage();
+                renderAll();
+            }
+        });
 
         // Toast Helper
         function showToast(msg) {
@@ -827,29 +867,49 @@
             }, 3000);
         }
 
-        // Currency Toggle
+        // Currency Switcher
         function setCurrency(curr) {
             appState.currency = curr;
             document.getElementById('currINR').className = curr === 'INR' ? "px-2.5 py-1 rounded-full transition bg-rose-500 text-white" : "px-2.5 py-1 rounded-full transition text-charcoal/70 hover:text-charcoal";
             document.getElementById('currUSD').className = curr === 'USD' ? "px-2.5 py-1 rounded-full transition bg-rose-500 text-white" : "px-2.5 py-1 rounded-full transition text-charcoal/70 hover:text-charcoal";
             
-            updatePricesDisplay();
+            renderServices();
             renderGallery();
         }
 
-        function formatPrice(priceINR) {
+        function formatPrice(priceINR, priceUSD) {
             if (appState.currency === 'USD') {
-                return `$${Math.round(priceINR * appState.conversionRate)}`;
+                const usdVal = priceUSD || Math.round(priceINR * appState.conversionRate);
+                return `$${usdVal}`;
             }
             return `₹${priceINR.toLocaleString('en-IN')}`;
         }
 
-        function updatePricesDisplay() {
-            document.querySelectorAll('.price-display').forEach(el => {
-                const inr = parseInt(el.getAttribute('data-inr'));
-                const usd = parseInt(el.getAttribute('data-usd'));
-                el.textContent = appState.currency === 'USD' ? `$${usd}` : `₹${inr.toLocaleString('en-IN')}`;
-            });
+        // Render Services
+        function renderServices() {
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = appState.services.map(srv => `
+                <div class="glass-card glass-card-hover p-6 rounded-3xl flex flex-col justify-between border border-rose-100">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
+                            <i data-lucide="${srv.icon || 'sparkles'}" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-serif-title text-2xl text-charcoal font-semibold">${srv.title}</h3>
+                        <p class="text-xs text-charcoal/60 mt-2 leading-relaxed">${srv.desc}</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-rose-100/60 flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-wider text-charcoal/50">Starts at</span>
+                        <span class="font-serif-title text-2xl font-bold text-rose-800">${formatPrice(srv.priceINR, srv.priceUSD)}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function updateServiceSelectOptions() {
+            const select = document.getElementById('bookService');
+            select.innerHTML = appState.services.map(s => `<option value="${s.title}">${s.title}</option>`).join('');
         }
 
         // Render Lookbook Gallery
@@ -896,8 +956,7 @@
             const item = appState.lookbook.find(i => i.id === id);
             if(item) {
                 item.likes += 1;
-                saveState();
-                renderGallery();
+                saveStateAndSync();
                 showToast(`Liked ${item.title}`);
             }
         }
@@ -906,7 +965,7 @@
             const item = appState.lookbook.find(i => i.id === id);
             if(item) {
                 item.clicks += 1;
-                saveState();
+                saveStateAndSync();
             }
         }
 
@@ -937,13 +996,12 @@
             const comment = document.getElementById('revComment').value;
 
             appState.reviews.unshift({ name, rating, comment });
-            saveState();
-            renderReviews();
+            saveStateAndSync();
             toggleReviewModal(false);
             showToast("Thank you for your review!");
         }
 
-        // APPOINTMENT BOOKING & AUTOMATIC POST-BOOKING FEEDBACK MODAL LOGIC
+        // APPOINTMENT BOOKING & AUTOMATIC POST-BOOKING FEEDBACK MODAL
         function handleBookingSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('bookName').value;
@@ -964,14 +1022,10 @@
                 status: 'Pending'
             };
 
-            // Save booking to state/localStorage
             appState.bookings.unshift(newBooking);
-            saveState();
+            saveStateAndSync();
 
-            // Clear booking form
             document.getElementById('bookingForm').reset();
-
-            // Auto-fill client name into post-booking feedback modal & trigger it
             document.getElementById('postRevName').value = name;
             setSelectedStar(5);
             togglePostBookingFeedback(true);
@@ -1003,16 +1057,15 @@
 
             if (comment.trim()) {
                 appState.reviews.unshift({ name, rating, comment });
-                saveState();
-                renderReviews();
+                saveStateAndSync();
             }
 
             togglePostBookingFeedback(false);
             document.getElementById('postRevComment').value = '';
-            showToast("Thank you! Appointment logged & feedback recorded.");
+            showToast("Appointment logged & review published!");
         }
 
-        // ADMIN PASSKEY MODAL LOGIC
+        // ADMIN ACCESS AUTHENTICATION
         function promptAdminLogin() {
             if (appState.isAdmin) {
                 switchView('admin');
@@ -1054,11 +1107,12 @@
             }
             
             document.getElementById('clientView').classList.toggle('hidden', view === 'admin');
+            document.getElementById('clientHeader').classList.toggle('hidden', view === 'admin');
             document.getElementById('adminView').classList.toggle('hidden', view === 'client');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ADMIN DASHBOARD FUNCTIONS
+        // ADMIN DASHBOARD RENDERING & MANAGEMENT
         function renderAdminDashboard() {
             // Stats
             document.getElementById('statLookbookCount').textContent = appState.lookbook.length;
@@ -1086,7 +1140,7 @@
                 </tr>
             `).join('');
 
-            // Admin Lookbook Delete Grid
+            // Manage Designs Stream
             const adminGrid = document.getElementById('adminGalleryManageGrid');
             adminGrid.innerHTML = appState.lookbook.map(item => `
                 <div class="bg-white/80 p-3 rounded-2xl border border-rose-100 flex items-center justify-between gap-3">
@@ -1096,6 +1150,20 @@
                         <p class="text-[10px] text-charcoal/50">Clicks: ${item.clicks} | Likes: ${item.likes}</p>
                     </div>
                     <button onclick="deleteDesign('${item.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // Manage Services List
+            const servicesList = document.getElementById('adminServicesManageList');
+            servicesList.innerHTML = appState.services.map(s => `
+                <div class="bg-white/80 p-3 rounded-2xl border border-rose-100 flex items-center justify-between gap-3">
+                    <div class="truncate flex-1">
+                        <p class="text-xs font-semibold text-charcoal">${s.title}</p>
+                        <p class="text-[10px] text-charcoal/50">₹${s.priceINR} / $${s.priceUSD}</p>
+                    </div>
+                    <button onclick="deleteService('${s.id}')" class="text-red-500 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -1138,28 +1206,55 @@
             };
 
             appState.lookbook.unshift(newDesign);
-            saveState();
-            renderGallery();
-            
+            saveStateAndSync();
+
             document.getElementById('addDesignForm').reset();
             document.getElementById('imagePreviewContainer').classList.add('hidden');
             uploadedBase64 = '';
-            showToast("New design published to lookbook!");
+            showToast("Published design to Client Lookbook!");
+        }
+
+        function handleAddService(e) {
+            e.preventDefault();
+            const title = document.getElementById('adminServiceTitle').value;
+            const desc = document.getElementById('adminServiceDesc').value;
+            const priceINR = parseInt(document.getElementById('adminServiceINR').value);
+            const priceUSD = parseInt(document.getElementById('adminServiceUSD').value);
+
+            const newService = {
+                id: 's_' + Date.now(),
+                title,
+                desc,
+                priceINR,
+                priceUSD,
+                icon: 'sparkles'
+            };
+
+            appState.services.push(newService);
+            saveStateAndSync();
+
+            document.getElementById('addServiceForm').reset();
+            showToast("Added new treatment offering!");
         }
 
         function deleteDesign(id) {
             appState.lookbook = appState.lookbook.filter(i => i.id !== id);
-            saveState();
-            renderGallery();
+            saveStateAndSync();
             showToast("Design removed.");
+        }
+
+        function deleteService(id) {
+            appState.services = appState.services.filter(s => s.id !== id);
+            saveStateAndSync();
+            showToast("Service removed.");
         }
 
         function toggleBookingStatus(id) {
             const booking = appState.bookings.find(b => b.id === id);
             if(booking) {
                 booking.status = booking.status === 'Pending' ? 'Confirmed' : 'Pending';
-                saveState();
-                showToast(`Appointment marked as ${booking.status}`);
+                saveStateAndSync();
+                showToast(`Appointment status updated to ${booking.status}`);
             }
         }
     </script>
